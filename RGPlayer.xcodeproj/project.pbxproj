@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FD0C2432199C2F4003C856E /* NSURL+RemoteUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */; };
+		2FDB475021996E390011345C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB474F21996E390011345C /* AppDelegate.m */; };
+		2FDB475321996E390011345C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB475221996E390011345C /* ViewController.m */; };
+		2FDB475621996E390011345C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB475421996E390011345C /* Main.storyboard */; };
+		2FDB475821996E390011345C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB475721996E390011345C /* Assets.xcassets */; };
+		2FDB475B21996E390011345C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FDB475921996E390011345C /* LaunchScreen.storyboard */; };
+		2FDB475E21996E390011345C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB475D21996E390011345C /* main.m */; };
+		2FDB476721996EBF0011345C /* RGRemotePalyer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB476621996EBF0011345C /* RGRemotePalyer.m */; };
+		2FDB476A219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB4769219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m */; };
+		2FDB476D21998F770011345C /* RGRemoteAudioDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB476C21998F770011345C /* RGRemoteAudioDownloader.m */; };
+		2FDB477021998F9A0011345C /* RGRemoteAudilFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB476F21998F9A0011345C /* RGRemoteAudilFileTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2FD0C2412199C2F4003C856E /* NSURL+RemoteUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+RemoteUrl.h"; sourceTree = "<group>"; };
+		2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RemoteUrl.m"; sourceTree = "<group>"; };
+		2FDB474B21996E390011345C /* RGPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RGPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FDB474E21996E390011345C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2FDB474F21996E390011345C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2FDB475121996E390011345C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		2FDB475221996E390011345C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2FDB475521996E390011345C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FDB475721996E390011345C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FDB475A21996E390011345C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2FDB475C21996E390011345C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FDB475D21996E390011345C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2FDB476521996EBF0011345C /* RGRemotePalyer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGRemotePalyer.h; sourceTree = "<group>"; };
+		2FDB476621996EBF0011345C /* RGRemotePalyer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemotePalyer.m; sourceTree = "<group>"; };
+		2FDB4768219974020011345C /* RGRemotePlayerResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGRemotePlayerResourceLoaderDelegate.h; sourceTree = "<group>"; };
+		2FDB4769219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemotePlayerResourceLoaderDelegate.m; sourceTree = "<group>"; };
+		2FDB476B21998F770011345C /* RGRemoteAudioDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGRemoteAudioDownloader.h; sourceTree = "<group>"; };
+		2FDB476C21998F770011345C /* RGRemoteAudioDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemoteAudioDownloader.m; sourceTree = "<group>"; };
+		2FDB476E21998F9A0011345C /* RGRemoteAudilFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGRemoteAudilFileTool.h; sourceTree = "<group>"; };
+		2FDB476F21998F9A0011345C /* RGRemoteAudilFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemoteAudilFileTool.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FDB474821996E390011345C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2FDB474221996E390011345C = {
+			isa = PBXGroup;
+			children = (
+				2FDB474D21996E390011345C /* RGPlayer */,
+				2FDB474C21996E390011345C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2FDB474C21996E390011345C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2FDB474B21996E390011345C /* RGPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2FDB474D21996E390011345C /* RGPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				2FDB474E21996E390011345C /* AppDelegate.h */,
+				2FDB474F21996E390011345C /* AppDelegate.m */,
+				2FDB475121996E390011345C /* ViewController.h */,
+				2FDB475221996E390011345C /* ViewController.m */,
+				2FDB476421996E420011345C /* class */,
+				2FDB475421996E390011345C /* Main.storyboard */,
+				2FDB475721996E390011345C /* Assets.xcassets */,
+				2FDB475921996E390011345C /* LaunchScreen.storyboard */,
+				2FDB475C21996E390011345C /* Info.plist */,
+				2FDB475D21996E390011345C /* main.m */,
+			);
+			path = RGPlayer;
+			sourceTree = "<group>";
+		};
+		2FDB476421996E420011345C /* class */ = {
+			isa = PBXGroup;
+			children = (
+				2FDB476521996EBF0011345C /* RGRemotePalyer.h */,
+				2FDB476621996EBF0011345C /* RGRemotePalyer.m */,
+				2FDB476B21998F770011345C /* RGRemoteAudioDownloader.h */,
+				2FDB476C21998F770011345C /* RGRemoteAudioDownloader.m */,
+				2FDB476E21998F9A0011345C /* RGRemoteAudilFileTool.h */,
+				2FDB476F21998F9A0011345C /* RGRemoteAudilFileTool.m */,
+				2FDB4768219974020011345C /* RGRemotePlayerResourceLoaderDelegate.h */,
+				2FDB4769219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m */,
+				2FD0C2412199C2F4003C856E /* NSURL+RemoteUrl.h */,
+				2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */,
+			);
+			path = class;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2FDB474A21996E390011345C /* RGPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FDB476121996E390011345C /* Build configuration list for PBXNativeTarget "RGPlayer" */;
+			buildPhases = (
+				2FDB474721996E390011345C /* Sources */,
+				2FDB474821996E390011345C /* Frameworks */,
+				2FDB474921996E390011345C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RGPlayer;
+			productName = RGPlayer;
+			productReference = 2FDB474B21996E390011345C /* RGPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2FDB474321996E390011345C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = yangrui;
+				TargetAttributes = {
+					2FDB474A21996E390011345C = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2FDB474621996E390011345C /* Build configuration list for PBXProject "RGPlayer" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2FDB474221996E390011345C;
+			productRefGroup = 2FDB474C21996E390011345C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2FDB474A21996E390011345C /* RGPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2FDB474921996E390011345C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FDB475B21996E390011345C /* LaunchScreen.storyboard in Resources */,
+				2FDB475821996E390011345C /* Assets.xcassets in Resources */,
+				2FDB475621996E390011345C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2FDB474721996E390011345C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FDB475321996E390011345C /* ViewController.m in Sources */,
+				2FDB476721996EBF0011345C /* RGRemotePalyer.m in Sources */,
+				2FD0C2432199C2F4003C856E /* NSURL+RemoteUrl.m in Sources */,
+				2FDB476A219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m in Sources */,
+				2FDB475E21996E390011345C /* main.m in Sources */,
+				2FDB476D21998F770011345C /* RGRemoteAudioDownloader.m in Sources */,
+				2FDB477021998F9A0011345C /* RGRemoteAudilFileTool.m in Sources */,
+				2FDB475021996E390011345C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2FDB475421996E390011345C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FDB475521996E390011345C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2FDB475921996E390011345C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FDB475A21996E390011345C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2FDB475F21996E390011345C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2FDB476021996E390011345C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2FDB476221996E390011345C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RGPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = yr.RGPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2FDB476321996E390011345C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RGPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = yr.RGPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2FDB474621996E390011345C /* Build configuration list for PBXProject "RGPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FDB475F21996E390011345C /* Debug */,
+				2FDB476021996E390011345C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FDB476121996E390011345C /* Build configuration list for PBXNativeTarget "RGPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FDB476221996E390011345C /* Debug */,
+				2FDB476321996E390011345C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2FDB474321996E390011345C /* Project object */;
+}
