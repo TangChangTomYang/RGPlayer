@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
 @property(nonatomic, assign,readonly)float progress;
 @property(nonatomic, assign,readonly)float loadDataProgerss;
 @property(nonatomic, strong,readonly)NSURL *url;
-
+@property(nonatomic, strong,readonly)NSURL *path;
 
 
 
@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
 
 #pragma mark- 对外数据接口
 +(instancetype)shareInstance;
+/** 通过远程地址播放(资源在 remoteServer上或者 cachePath tempPath中)
+ */
 -(void)playWithUrl:(NSURL *)url isCache:(BOOL)isCache;
 -(void)pause;
 -(void)resume;

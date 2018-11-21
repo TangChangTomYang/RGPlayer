@@ -9,6 +9,7 @@
 #import "RGRemotePalyer.h"
 #import <AVFoundation/AVFoundation.h>
 #import "RGRemotePlayerResourceLoaderDelegate.h"
+#import "NSURL+RemoteUrl.h"
 
 
 @interface RGRemotePalyer (){
@@ -27,12 +28,6 @@
 
 @implementation RGRemotePalyer
 
-+(NSURL *)streamUrl:(NSURL *)url{
-    NSString *urlStr = url.absoluteString;
-    NSURLComponents *urlComponents = [NSURLComponents componentsWithString:urlStr];
-    urlComponents.scheme = @"stream";
-    return urlComponents.URL;
-}
 
 static RGRemotePalyer *_remotePlayer = nil;
 +(instancetype)shareInstance{
@@ -73,7 +68,7 @@ static RGRemotePalyer *_remotePlayer = nil;
     _url = url;
     _isUserPause = NO;
     if (isCache ) {
-        url = [RGRemotePalyer streamUrl:url];
+        url = [url streamingRrl];
     }
     
     // 先移除旧的player.currentItem 的监听者,后面在给新的item添加新的监听者
@@ -109,6 +104,43 @@ static RGRemotePalyer *_remotePlayer = nil;
 
 -(void)setState:(RGRemotePalyerState)state{
     _state = state;
+    
+    switch (state) {
+        case RGRemotePalyerState_unknown:
+            NSLog(@"Palyer 未知(比如没有加载数据)");
+        break;
+            
+        case RGRemotePalyerState_Loading:
+            NSLog(@"Palyer 正在加载");
+        break;
+            
+        case RGRemotePalyerState_Playing:
+            NSLog(@"Palyer 正在播放");
+        break;
+            
+        case RGRemotePalyerState_Stoped:
+            NSLog(@"Palyer 停止");
+        break;
+            
+        case RGRemotePalyerState_pause:
+            NSLog(@"Palyer 暂停");
+        break;
+            
+        case RGRemotePalyerState_playEnd:
+            NSLog(@"Palyer 播放完成");
+        break;
+            
+        case RGRemotePalyerState_interrupt :
+            NSLog(@"Palyer 播放被打断");
+        break;
+            
+        case RGRemotePalyerState_Failed:
+            NSLog(@"Palyer 失败(比如,没有网络缓存失败, 地址错误等)");
+        break;
+       
+        default:
+            break;
+    }
 }
 
 
@@ -230,9 +262,10 @@ static RGRemotePalyer *_remotePlayer = nil;
     
     // 获取当前音频资源的总时长
     NSTimeInterval totalTimeSec = [self totalTime];
+    NSTimeInterval currentTimeSec = totalTimeSec * progress;
     int32_t timeScale = self.player.currentItem.duration.timescale;
     
-    CMTime progessTimeCM = CMTimeMake(totalTimeSec * timeScale , timeScale);
+    CMTime progessTimeCM = CMTimeMake(currentTimeSec * timeScale , timeScale);
     
     
     [self.player seekToTime:progessTimeCM completionHandler:^(BOOL finished) {

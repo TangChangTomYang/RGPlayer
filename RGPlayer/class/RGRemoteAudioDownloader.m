@@ -11,15 +11,7 @@
 
 
 // 下载某一个区间的数据
-@interface RGRemoteAudioDownloader ()<NSURLSessionDataDelegate>{
-    long long  _totalSize;
-    long long  _loadedSize;
-    long long  _offset;
-    NSString *_mineType;
-    NSURL *_url;
-    
-}
-
+@interface RGRemoteAudioDownloader ()<NSURLSessionDataDelegate>
 @property(nonatomic, strong)NSURLSession *session;
 @property(nonatomic, strong)NSOutputStream *outputStream;
 
@@ -27,37 +19,6 @@
 @end
 @implementation RGRemoteAudioDownloader
 
-#pragma mark- geter setter
--(long long)totalSize{
-    return _totalSize;
-}
--(void)setTotalSize:(long long)totalSize{
-    _totalSize = totalSize;
-}
--(long long)loadedSize{
-    return _loadedSize;
-}
--(void)setLoadedSize:(long long)loadedSize{
-    _loadedSize = loadedSize;
-}
--(long long)offset{
-    return _offset;
-}
--(void)setOffset:(long long)offset{
-    _offset = offset;
-}
--(NSString *)mineType{
-    return _mineType;
-}
--(void)setMineType:(NSString *)mineType{
-    _mineType = [mineType copy];
-}
--(NSURL *)url{
-    return _url;
-}
--(void)setUrl:(NSURL *)url{
-    _url = url;
-}
 
 
 -(NSURLSession *)session{

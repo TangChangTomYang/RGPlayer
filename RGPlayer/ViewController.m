@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RGRemotePalyer.h"
+#import "RGRemoteAudilFileTool.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *playTimeLabel;
@@ -67,7 +68,8 @@
 - (IBAction)play:(id)sender {
     
     // http://120.25.226.186:32812/resources/videos/minion_01.mp4
-    NSURL *url = [NSURL URLWithString:@"http://120.25.226.186:32812/resources/videos/minion_01.mp4"];
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/seeyouseeme.mp3"];
+
     [[RGRemotePalyer shareInstance] playWithUrl:url isCache:YES];
     
 }
@@ -79,7 +81,7 @@
     [[RGRemotePalyer shareInstance] resume];
 }
 - (IBAction)kuaijin:(id)sender {
-    [[RGRemotePalyer shareInstance] seekWithTimeDiffer:15];
+    [[RGRemotePalyer shareInstance] seekWithTimeDiffer:3];
 }
 - (IBAction)progress:(UISlider *)sender {
     [[RGRemotePalyer shareInstance] seekWithProgerss:sender.value];

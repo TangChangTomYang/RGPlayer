@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F1F427F21A37B540036A4A5 /* 235319.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F1F427E21A37B540036A4A5 /* 235319.mp3 */; };
 		2FD0C2432199C2F4003C856E /* NSURL+RemoteUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */; };
 		2FDB475021996E390011345C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB474F21996E390011345C /* AppDelegate.m */; };
 		2FDB475321996E390011345C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB475221996E390011345C /* ViewController.m */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F1F427E21A37B540036A4A5 /* 235319.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 235319.mp3; sourceTree = "<group>"; };
 		2FD0C2412199C2F4003C856E /* NSURL+RemoteUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURL+RemoteUrl.h"; sourceTree = "<group>"; };
 		2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RemoteUrl.m"; sourceTree = "<group>"; };
 		2FDB474B21996E390011345C /* RGPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RGPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +81,7 @@
 				2FDB475221996E390011345C /* ViewController.m */,
 				2FDB476421996E420011345C /* class */,
 				2FDB475421996E390011345C /* Main.storyboard */,
+				2F1F427E21A37B540036A4A5 /* 235319.mp3 */,
 				2FDB475721996E390011345C /* Assets.xcassets */,
 				2FDB475921996E390011345C /* LaunchScreen.storyboard */,
 				2FDB475C21996E390011345C /* Info.plist */,
@@ -165,6 +168,7 @@
 				2FDB475B21996E390011345C /* LaunchScreen.storyboard in Resources */,
 				2FDB475821996E390011345C /* Assets.xcassets in Resources */,
 				2FDB475621996E390011345C /* Main.storyboard in Resources */,
+				2F1F427F21A37B540036A4A5 /* 235319.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,4 +28,6 @@
 
 +(NSString *)contentType:(NSURL *)url;
 
++(BOOL)copyFileTocachePath:(NSURL *)fromPath;
+
 @end

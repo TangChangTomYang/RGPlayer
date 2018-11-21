@@ -65,6 +65,7 @@
     }
     
 }
+
 +(void)clearTempFile:(NSURL *)url{
     if ([self tempFileExists:url]) {
         [[NSFileManager defaultManager] removeItemAtPath:[self tempFilePath:url] error:nil];
@@ -94,6 +95,18 @@
     
     return contentType;
     
+    
+}
+
+
+
++(BOOL)copyFileTocachePath:(NSURL *)fromPath{
+    
+    NSURL *cache = [NSURL fileURLWithPath:[self cacheFilePath:fromPath]];
+    BOOL isOk = [[NSFileManager defaultManager] copyItemAtURL:fromPath toURL:cache error:nil];
+    
+ 
+    return isOk;
     
 }
 

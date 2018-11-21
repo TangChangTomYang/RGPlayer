@@ -41,8 +41,17 @@
 - (BOOL)resourceLoader:(AVAssetResourceLoader *)resourceLoader
 shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest{
     
+    NSLog(@">>>>>loadingRequest : %@", loadingRequest);
     
     NSURL *httpUrl = [loadingRequest.request.URL httpUrl];
+    
+    long long requestOffset = loadingRequest.dataRequest.requestedOffset;
+    long long currentOffset = loadingRequest.dataRequest.currentOffset;
+    if(requestOffset != currentOffset){
+        requestOffset = currentOffset;
+    }
+    
+    
     //1. 判断, 本地是否有该音频的缓存文件, 如果有, 直接根据本地缓存,向外提供数据
     if([RGRemoteAudilFileTool cacheFileExists:httpUrl]){
         [self handleLoadingRequest:loadingRequest];
@@ -51,13 +60,6 @@ shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loading
     
     //记录所有的请求
     [self.loadingRequestArrM addObject:loadingRequest];
-    
-    long long requestOffset = loadingRequest.dataRequest.requestedOffset;
-    long long currentOffset = loadingRequest.dataRequest.currentOffset;
-    if(requestOffset != currentOffset){
-        requestOffset = currentOffset;
-    }
-    
     
     //2.判断有没有正在下载
     if(self.downloader.loadedSize == 0){
@@ -92,8 +94,72 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
     [self.loadingRequestArrM removeObject:loadingRequest];
 }
 
+#pragma mark- RGRemoteAudioDownloaderDelegate
+-(void)downloading{
+    [self handkeAllLoadingRequest];
+}
 
 #pragma mark- 处理响应
+//
+-(void)handkeAllLoadingRequest{
+    
+    NSMutableArray *deleteRequestArrM = [NSMutableArray array];
+    
+    for (AVAssetResourceLoadingRequest *loadingRequest in self.loadingRequestArrM) {
+        
+        //1. 填充内容信息头
+        NSURL *url = loadingRequest.request.URL;
+        
+        long long totalSize = self.downloader.totalSize;
+        loadingRequest.contentInformationRequest.contentLength = totalSize;// 这个应该是文件的总大小
+        
+        NSString *contentType = self.downloader.mineType;
+        loadingRequest.contentInformationRequest.contentType = contentType;
+        
+        loadingRequest.contentInformationRequest.byteRangeAccessSupported = YES; // 是否允许一点一点的传输数据
+        
+        
+        //2. 填充数据(数据 和 地址映射关系防止内存爆炸)
+        NSData *data = [NSData dataWithContentsOfFile:[RGRemoteAudilFileTool tempFilePath:url]
+                                              options:NSDataReadingMappedIfSafe
+                                                error:nil];
+        
+        if (data.length == 0) {// 如果临时没有数据,就取缓存数据
+            data = [NSData dataWithContentsOfFile:[RGRemoteAudilFileTool cacheFilePath:url]
+                                          options:NSDataReadingMappedIfSafe
+                                            error:nil];
+        }
+        
+        //requestOffset 表示的是发出请求那一刻时的offset
+        long long requestOffset = loadingRequest.dataRequest.requestedOffset;
+        //currentOffset (比如: 已经对request 响应了一段数据,那么当前的offset 就会变为currentOffset的值)
+        long long currentOffset = loadingRequest.dataRequest.currentOffset;
+        if (requestOffset != currentOffset) {
+            requestOffset = currentOffset;
+        }
+        NSInteger requestLength = loadingRequest.dataRequest.requestedLength;
+        
+        
+        
+        //响应的offset 要减去请求时的Offset
+        long long responseOffset = requestOffset - self.downloader.offset;
+        //响应的长度 取最小的
+        long long responseLength = MIN((self.downloader.offset + self.downloader.loadedSize - requestOffset ), requestLength);
+        
+        NSData *subData = [data subdataWithRange:NSMakeRange(responseOffset, responseLength)];
+        [loadingRequest.dataRequest respondWithData:subData];
+        
+        //3.请求完成, (必须把所有的关于这个请求区间的数据, 都返回完毕后, 才能完成这个请求)
+        if(requestLength == responseLength){
+            [loadingRequest finishLoading];
+            [deleteRequestArrM addObject:loadingRequest];
+        }
+    }
+    
+    [self.loadingRequestArrM removeObjectsInArray:deleteRequestArrM];
+}
+
+
 //处理, 本地已经下载好的资源文件
 -(void)handleLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
     
@@ -121,61 +187,7 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest{
     [loadingRequest finishLoading];
 }
 
-//
--(void)handkeAllLoadingRequest{
-    
-    NSMutableArray *deleteRequestArrM = [NSMutableArray array];
-    
-    for (AVAssetResourceLoadingRequest *loadingRequest in self.loadingRequestArrM) {
-        
-        //1. 填充内容信息头
-        NSURL *url = [loadingRequest.request.URL httpUrl];
-        
-        long long totalSize = self.downloader.totalSize;
-        loadingRequest.contentInformationRequest.contentLength = totalSize;// 这个应该是文件的总大小
-        NSString *contentType = self.downloader.mineType;
-        loadingRequest.contentInformationRequest.contentType = contentType;
-        loadingRequest.contentInformationRequest.byteRangeAccessSupported = YES; // 是否允许一点一点的传输数据
-        
-        
-        //2. 填充数据(数据 和 地址映射关系防止内存爆炸)
-        NSData *data = [NSData dataWithContentsOfFile:[RGRemoteAudilFileTool tempFilePath:url]
-                                              options:NSDataReadingMappedIfSafe
-                                                error:nil];
-        
-        if (data.length == 0) {// 如果临时没有数据,就取缓存数据
-            data = [NSData dataWithContentsOfFile:[RGRemoteAudilFileTool cacheFilePath:url]
-                                          options:NSDataReadingMappedIfSafe
-                                            error:nil];
-        }
-        
-        long long requestOffset = loadingRequest.dataRequest.requestedOffset;
-        long long currentOffset = loadingRequest.dataRequest.currentOffset;
-        if (requestOffset != currentOffset) {
-            requestOffset = currentOffset;
-        }
-        NSInteger requestLength = loadingRequest.dataRequest.requestedLength;
-        //响应的offset 要减去请求时的Offset
-        long long responseOffset = requestOffset - self.downloader.offset;
-        //响应的长度 取最小的
-        long long responseLength = MIN(self.downloader.offset + self.downloader.loadedSize, requestLength);
-        
-        NSData *subData = [data subdataWithRange:NSMakeRange(responseOffset, responseLength)];
-        [loadingRequest.dataRequest respondWithData:subData];
-        
-        //3.请求完成, (必须把所有的关于这个请求区间的数据, 都返回完毕后, 才能完成这个请求)
-        if(requestLength == responseLength){
-            [loadingRequest finishLoading];
-            [deleteRequestArrM addObject:loadingRequest];
-        }
-    }
-    
-    [self.loadingRequestArrM removeObjectsInArray:deleteRequestArrM];
-}
 
 
-#pragma mark- RGRemoteAudioDownloaderDelegate
--(void)downloading{
-    [self handkeAllLoadingRequest];
-}
+
 @end
