@@ -13,7 +13,6 @@
 -(NSURL *)streamingRrl{
     //http://xxxx
     NSURLComponents *components = [NSURLComponents componentsWithString:self.absoluteString];
-//    components.scheme = @"streaming";
     components.scheme = @"streaming";
     return  components.URL;
 }

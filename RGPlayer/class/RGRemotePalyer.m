@@ -33,6 +33,9 @@ static RGRemotePalyer *_remotePlayer = nil;
 +(instancetype)shareInstance{
     if (!_remotePlayer) {
         _remotePlayer = [[self alloc] init];
+        
+        //开启播放器后台播放功能
+        [_remotePlayer activeAudioPlaybackground];
     }
     return _remotePlayer;
 }
@@ -47,7 +50,40 @@ static RGRemotePalyer *_remotePlayer = nil;
     return _remotePlayer;
 }
 
+#pragma mark- 激活后台模式
+/** 音频后台播放的步骤
+ 1. target --> capabilities --> background Modes(打开) --> 勾选Audio,AirPlay,and Picture in picture
+ 2. 获取音频会话
+ 3. 设置音频会话 类别
+ 4. 激活音频会话
+ */
+-(void)activeAudioPlaybackground{
+    
+    //1. 获取音频会话
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    
+    //2. 设置会话类别
+    NSError *err = nil;
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:&err];
+    
+    if (err != nil) {
+        NSLog(@"音频会话设置后台模式失败: err: %@", err.localizedDescription);
+        return;
+    }
+    
+    [audioSession setActive:YES error:&err];
+    
+    if (err != nil) {
+        NSLog(@" 激活 音频会话 后台模式失败: err: %@", err.localizedDescription);
+        
+    }
+}
+
+#pragma mark- 播放音乐
 -(void)playWithUrl:(NSURL *)url isCache:(BOOL)isCache{
+    
+    BOOL isFileUrl = [url isFileURL];
+   
     
     // 创建一个播放器对象
     // 资源的请求
@@ -67,7 +103,7 @@ static RGRemotePalyer *_remotePlayer = nil;
     }
     _url = url;
     _isUserPause = NO;
-    if (isCache ) {
+    if (isCache == YES && isFileUrl == NO) {
         url = [url streamingRrl];
     }
     
@@ -78,9 +114,11 @@ static RGRemotePalyer *_remotePlayer = nil;
     
     // 1.资源的请求者
     AVURLAsset *asset = [AVURLAsset assetWithURL:url];
-    self.resourceLoader = [[RGRemotePlayerResourceLoaderDelegate alloc] init];
-    [asset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
-    
+    if(isFileUrl == NO){ // 如果是远程URL 就需要设置 asset.resourceLoader 的代理,数据从代理处加载
+        self.resourceLoader = [[RGRemotePlayerResourceLoaderDelegate alloc] init];
+        [asset.resourceLoader setDelegate:self.resourceLoader queue:dispatch_get_main_queue()];
+    }
+   
     //2. 资源的组织
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
     // 当资源的组织者告诉我们资源准备好了, 我们在播放
@@ -367,6 +405,7 @@ static RGRemotePalyer *_remotePlayer = nil;
     
     [self removeObserver];
 }
+
 
 
 @end

@@ -67,8 +67,13 @@
 
 - (IBAction)play:(id)sender {
     
-    // http://120.25.226.186:32812/resources/videos/minion_01.mp4
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/seeyouseeme.mp3"];
+    //远程地址
+//    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/seeyouseeme.mp3"];
+    NSURL *url = [NSURL URLWithString:@"http://172.20.10.10/seeyouseeme.mp3"];
+    
+    
+    // 本地文件
+//    url = [[NSBundle mainBundle] URLForResource:@"235319.mp3" withExtension:nil];
 
     [[RGRemotePalyer shareInstance] playWithUrl:url isCache:YES];
     
