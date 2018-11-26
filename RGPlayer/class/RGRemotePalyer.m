@@ -7,7 +7,6 @@
 //   11-播放器-拦截播放请求和本地假数据测试
 
 #import "RGRemotePalyer.h"
-#import <AVFoundation/AVFoundation.h>
 #import "RGRemotePlayerResourceLoaderDelegate.h"
 #import "NSURL+RemoteUrl.h"
 
@@ -79,28 +78,49 @@ static RGRemotePalyer *_remotePlayer = nil;
     }
 }
 
+
+
 #pragma mark- 播放音乐
+/** 其实AVPlayer 是一个视频播放器, 视频播放器技能播放视频也能播放音频
+ */
+-(AVPlayerLayer *)avplayWithUrl:(NSURL *)url isCache:(BOOL)isCache{
+    
+    [self playWithUrl:url isCache:isCache];
+    
+    return  [AVPlayerLayer playerLayerWithPlayer:self.player];
+  
+}
+
+
+/**
+创建一个播放器对象
+资源的请求
+资源的组织
+给播放器, 资源的播放
+如果通过url 直接创建播放器([AVPlayer playerWithURL:url]) 后直接调用播放功能([self.player play])
+如果资源加载的比较慢,有可能会造成调用了play 方法后, 当前音频并没有播放的的bug
+
+ AVPlayer *player = [AVPlayer playerWithURL:url];
+ [self.player play];
+ */
 -(void)playWithUrl:(NSURL *)url isCache:(BOOL)isCache{
     
-    BOOL isFileUrl = [url isFileURL];
-   
+    //
+    if(url == nil )return;
     
-    // 创建一个播放器对象
-    // 资源的请求
-    // 资源的组织
-    // 给播放器, 资源的播放
-    // 如果通过url 直接创建播放器([AVPlayer playerWithURL:url]) 后直接调用播放功能([self.player play])
-    // 如果资源加载的比较慢,有可能会造成调用了play 方法后, 当前音频并没有播放的的bug
-    
-//    AVPlayer *player = [AVPlayer playerWithURL:url];
-//    [self.player play];
-    
-    AVURLAsset *currentAsset = (AVURLAsset *)self.player.currentItem.asset;
-    NSURL *currentUrl = currentAsset.URL;
+    // 是同一个URL 就不处理
+    NSURL *currentUrl = ((AVURLAsset *)self.player.currentItem.asset).URL;
     if ([url isEqual:currentUrl]) {
         [self resume];
         return;
     }
+    else if(self.player != nil){ // 不是同一个就先停止原来的, 在继续后面的播放
+        [self stop];
+    }
+    
+    
+    //
+    BOOL isFileUrl = [url isFileURL];
     _url = url;
     _isUserPause = NO;
     if (isCache == YES && isFileUrl == NO) {
@@ -109,8 +129,9 @@ static RGRemotePalyer *_remotePlayer = nil;
     
     // 先移除旧的player.currentItem 的监听者,后面在给新的item添加新的监听者
     if(self.player.currentItem){
-        [self removeObserver];
+        [self removeCurrentItemObserver];
     }
+    
     
     // 1.资源的请求者
     AVURLAsset *asset = [AVURLAsset assetWithURL:url];
@@ -128,12 +149,14 @@ static RGRemotePalyer *_remotePlayer = nil;
     
     // 通知监听当前歌曲播放完成
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(palyDidEndNotice:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    
     // 通知监听当前歌曲被打断
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playDidInterruptNotice:) name:AVPlayerItemPlaybackStalledNotification object:nil];
     
     
     //3. 资源的播放
     self.player = [AVPlayer playerWithPlayerItem:item];
+    
     
 }
 -(RGRemotePalyerState)state{
@@ -337,7 +360,7 @@ static RGRemotePalyer *_remotePlayer = nil;
 }
 
 
--(void)removeObserver{
+-(void)removeCurrentItemObserver{
     [self.player.currentItem removeObserver:self forKeyPath:@"status"];
 }
 
@@ -403,7 +426,7 @@ static RGRemotePalyer *_remotePlayer = nil;
 
 -(void)dealloc{
     
-    [self removeObserver];
+    [self removeCurrentItemObserver];
 }
 
 

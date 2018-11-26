@@ -19,6 +19,7 @@
 		2FDB476A219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB4769219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m */; };
 		2FDB476D21998F770011345C /* RGRemoteAudioDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB476C21998F770011345C /* RGRemoteAudioDownloader.m */; };
 		2FDB477021998F9A0011345C /* RGRemoteAudilFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB476F21998F9A0011345C /* RGRemoteAudilFileTool.m */; };
+		2FDED1BF21A7A0A600563B48 /* UIImage+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDED1BE21A7A0A600563B48 /* UIImage+Text.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		2FDB476C21998F770011345C /* RGRemoteAudioDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemoteAudioDownloader.m; sourceTree = "<group>"; };
 		2FDB476E21998F9A0011345C /* RGRemoteAudilFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGRemoteAudilFileTool.h; sourceTree = "<group>"; };
 		2FDB476F21998F9A0011345C /* RGRemoteAudilFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RGRemoteAudilFileTool.m; sourceTree = "<group>"; };
+		2FDED1BD21A7A0A600563B48 /* UIImage+Text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Text.h"; sourceTree = "<group>"; };
+		2FDED1BE21A7A0A600563B48 /* UIImage+Text.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Text.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				2FDB4769219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m */,
 				2FD0C2412199C2F4003C856E /* NSURL+RemoteUrl.h */,
 				2FD0C2422199C2F4003C856E /* NSURL+RemoteUrl.m */,
+				2FDED1BD21A7A0A600563B48 /* UIImage+Text.h */,
+				2FDED1BE21A7A0A600563B48 /* UIImage+Text.m */,
 			);
 			path = class;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				2FD0C2432199C2F4003C856E /* NSURL+RemoteUrl.m in Sources */,
 				2FDB476A219974020011345C /* RGRemotePlayerResourceLoaderDelegate.m in Sources */,
 				2FDB475E21996E390011345C /* main.m in Sources */,
+				2FDED1BF21A7A0A600563B48 /* UIImage+Text.m in Sources */,
 				2FDB476D21998F770011345C /* RGRemoteAudioDownloader.m in Sources */,
 				2FDB477021998F9A0011345C /* RGRemoteAudilFileTool.m in Sources */,
 				2FDB475021996E390011345C /* AppDelegate.m in Sources */,

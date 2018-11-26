@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
     RGRemotePalyerState_unknown = 0,//未知(比如没有加载数据)
@@ -55,7 +56,9 @@ typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
 -(void)seekWithProgerss:(float)progress;
 
 
-
+/** 其实AVPlayer 是一个视频播放器, 视频播放器技能播放视频也能播放音频
+ */
+-(AVPlayerLayer *)avplayWithUrl:(NSURL *)url isCache:(BOOL)isCache;
 
 
 @end

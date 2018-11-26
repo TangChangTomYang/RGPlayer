@@ -16,3 +16,8 @@
 
 @end
 
+
+/** 音乐播放的实现
+ 方案一: AVAudioPlayer 只能播放本地音乐不能播放远程的音乐, 操作简单
+ 方案二: AVPlayer 可以播放本地和远程音乐,操作较AVAudioPlayer复杂一点
+ */

@@ -21,31 +21,92 @@
 }
 
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+/** 监听远程控制事件
+ */
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    /**
+     远程事件类型定义
+     typedef NS_ENUM(NSInteger, UIEventSubtype) {
+     
+     UIEventSubtypeNone // 不包含任何类型事件
+     UIEventSubtypeMotionShake // 摇晃事件 (iOS3.0 开始支持)
+     UIEventSubtypeRemoteControlPlay // 播放事件 (停止状态,按下耳机线控中间按钮一下)
+     UIEventSubtypeRemoteControlPause // 暂停事件
+     UIEventSubtypeRemoteControlStop //停止事件
+     UIEventSubtypeRemoteControlTogglePlayPause // 播放或者暂停切换( 播放或暂停状态下, 按耳机线控中间按钮一下)
+     UIEventSubtypeRemoteControlNextTrack //下一首(按耳机线控中间按钮2次)
+     UIEventSubtypeRemoteControlPreviousTrack //上一首(按耳机线中间按钮3次)
+     UIEventSubtypeRemoteControlBeginSeekingBackward // 快退开始(按耳机线控中间按钮3次不要松开)
+     UIEventSubtypeRemoteControlEndSeekingBackward // 快退停止(按耳机线中间按钮3次到了快退的位置松开)
+     UIEventSubtypeRemoteControlBeginSeekingForward //快进开始(按耳机线控中间按钮2次不松开)
+     UIEventSubtypeRemoteControlEndSeekingForward   //快进停止 (按耳机线控中间按钮2次,到了快进位置松手)
+     };
+     */
+    switch (event.subtype) {
+            
+            // 不包含任何操作
+        case UIEventSubtypeNone : {
+            NSLog(@"--------不包含任何操作");
+        }break;
+            
+            // 摇晃事件
+        case UIEventSubtypeMotionShake : {
+            NSLog(@"--------摇晃事件");
+        }break;
+            
+            //播放事件 (停止状态,按下耳机线控中间按钮一下)
+        case  UIEventSubtypeRemoteControlPlay: {
+            NSLog(@"--------播放事件 (停止状态,按下耳机线控中间按钮一下)");
+        }break;
+            
+            //暂停事件
+        case  UIEventSubtypeRemoteControlPause: {
+            NSLog(@"--------暂停事件");
+        }break;
+            
+            //停止事件
+        case  UIEventSubtypeRemoteControlStop: {
+            NSLog(@"--------停止事件");
+        }break;
+            
+            //播放或者暂停切换( 播放或暂停状态下, 按耳机线控中间按钮一下)
+        case  UIEventSubtypeRemoteControlTogglePlayPause: {
+            NSLog(@"--------播放或者暂停切换( 播放或暂停状态下, 按耳机线控中间按钮一下)");
+        }break;
+            
+            //下一首(按耳机线控中间按钮2次)
+        case  UIEventSubtypeRemoteControlNextTrack: {
+            NSLog(@"--------下一首(按耳机线控中间按钮2次)");
+        }break;
+            
+            //上一首(按耳机线中间按钮3次)
+        case  UIEventSubtypeRemoteControlPreviousTrack: {
+            NSLog(@"--------上一首(按耳机线中间按钮3次)");
+        }break;
+            
+            //快退开始(按耳机线控中间按钮3次不要松开)
+        case  UIEventSubtypeRemoteControlBeginSeekingBackward: {
+            NSLog(@"--------快退开始(按耳机线控中间按钮3次不要松开)");
+        }break;
+            
+            //快退停止(按耳机线中间按钮3次到了快退的位置松开)
+        case  UIEventSubtypeRemoteControlEndSeekingBackward: {
+            NSLog(@"--------快退停止(按耳机线中间按钮3次到了快退的位置松开)");
+        }break;
+            
+            //快进开始(按耳机线控中间按钮2次不松开)
+        case  UIEventSubtypeRemoteControlBeginSeekingForward: {
+            NSLog(@"--------快进开始(按耳机线控中间按钮2次不松开)");
+        }break;
+            
+            //快进停止 (按耳机线控中间按钮2次,到了快进位置松手)
+        case  UIEventSubtypeRemoteControlEndSeekingForward: {
+            NSLog(@"--------快进停止 (按耳机线控中间按钮2次,到了快进位置松手)");
+        }break;
+            
+            
+        default:
+            break;
+    }
 }
-
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-
 @end
