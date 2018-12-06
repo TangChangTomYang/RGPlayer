@@ -96,10 +96,13 @@
 // 视频播放
 -(void)videoPlay{
     //远程音频播放地址
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1/test.mp4"];
+    NSURL *url = [NSURL URLWithString:@"http://172.20.10.10/aa.mov"];
+//    url = [NSURL URLWithString:@"http://192.168.1.177/test.mp4"];
+    // 视频播放也可以播放音频
+//    url = [NSURL URLWithString:@"http://172.20.10.10/seeyouseeme.mp3"];
     //本地音频播放
-    url = [[NSBundle mainBundle] URLForResource:@"aaa.mp4" withExtension:nil];
-    AVPlayerLayer *layer = [[RGRemotePalyer shareInstance] avplayWithUrl:url isCache:YES];
+//    url = [[NSBundle mainBundle] URLForResource:@"aaa.mp4" withExtension:nil];
+    AVPlayerLayer *layer = [[RGRemotePalyer shareInstance] videoPlayWithUrl:url isCache:YES];
     layer.frame = self.view.bounds;
     [self.view.layer insertSublayer:layer atIndex:0];
 }

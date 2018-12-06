@@ -46,9 +46,16 @@ typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
 
 #pragma mark- 对外数据接口
 +(instancetype)shareInstance;
-/** 通过远程地址播放(资源在 remoteServer上或者 cachePath tempPath中)
+/**音频播放
+ url: 音频资源路径(支持HTTP和file协议格式)
+ isCache: 如果需要播放的同事缓存资源到本地传YES,不需要传NO
  */
 -(void)playWithUrl:(NSURL *)url isCache:(BOOL)isCache;
+/**视频播放
+ url: 音频资源路径(支持HTTP和file协议格式)
+ isCache: 如果需要播放的同事缓存资源到本地传YES,不需要传NO
+ */
+-(AVPlayerLayer *)videoPlayWithUrl:(NSURL *)url isCache:(BOOL)isCache;
 -(void)pause;
 -(void)resume;
 -(void)stop;
@@ -56,9 +63,7 @@ typedef NS_ENUM(NSInteger, RGRemotePalyerState) {
 -(void)seekWithProgerss:(float)progress;
 
 
-/** 其实AVPlayer 是一个视频播放器, 视频播放器技能播放视频也能播放音频
- */
--(AVPlayerLayer *)avplayWithUrl:(NSURL *)url isCache:(BOOL)isCache;
+
 
 
 @end

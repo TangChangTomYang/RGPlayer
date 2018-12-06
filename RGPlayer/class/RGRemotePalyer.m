@@ -83,7 +83,7 @@ static RGRemotePalyer *_remotePlayer = nil;
 #pragma mark- 播放音乐
 /** 其实AVPlayer 是一个视频播放器, 视频播放器技能播放视频也能播放音频
  */
--(AVPlayerLayer *)avplayWithUrl:(NSURL *)url isCache:(BOOL)isCache{
+-(AVPlayerLayer *)videoPlayWithUrl:(NSURL *)url isCache:(BOOL)isCache{
     
     [self playWithUrl:url isCache:isCache];
     
@@ -157,7 +157,9 @@ static RGRemotePalyer *_remotePlayer = nil;
     //3. 资源的播放
     self.player = [AVPlayer playerWithPlayerItem:item];
     
-    
+//    切换播放
+//    AVPlayerItem *newItem;
+//    [self.player replaceCurrentItemWithPlayerItem:newItem];
 }
 -(RGRemotePalyerState)state{
     return _state;
