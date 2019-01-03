@@ -35,6 +35,10 @@ static RGRemotePalyer *_remotePlayer = nil;
         
         //开启播放器后台播放功能
         [_remotePlayer activeAudioPlaybackground];
+        
+        //添加音频线路改变监听通知
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [[NSNotificationCenter defaultCenter] addObserver:_remotePlayer selector:@selector(audioRouteChangeNotice:) name:AVAudioSessionRouteChangeNotification object:audioSession];
     }
     return _remotePlayer;
 }
@@ -48,6 +52,65 @@ static RGRemotePalyer *_remotePlayer = nil;
     }
     return _remotePlayer;
 }
+
+#pragma mark- AVAudioSessionRouteChangeNotification
+/** 监听音频线路的切换
+ */
+-(void)audioRouteChangeNotice:(NSNotification *)notice{
+    
+    // 音频线路改变的原因
+    AVAudioSessionRouteChangeReason routeChangeReason =  (AVAudioSessionRouteChangeReason)[notice.userInfo[AVAudioSessionRouteChangeReasonKey] integerValue];
+    
+    switch (routeChangeReason) {
+        case AVAudioSessionRouteChangeReasonUnknown:{
+            
+            NSLog(@"音频线路 ----变更  原因未知");
+        } break;
+        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:{
+            NSLog(@"音频线路 ----变更  新的设备可以用了");
+            [self resume];
+            
+        } break;
+        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:{// 监测到上一个音频线路不能用了
+             NSLog(@"音频线路 ----变更  旧 设备不能使用了");
+            // 获取上一个音频路径
+          AVAudioSessionRouteDescription *previousRoute = notice.userInfo[AVAudioSessionRouteChangePreviousRouteKey];
+            
+            // 获取上一个音频路径的描述
+            AVAudioSessionPortDescription *previousOutputDes = [previousRoute.outputs firstObject];
+            // 获取上一个音频路径的输出端口类型
+            NSString *portType = previousOutputDes.portType;
+            
+            if ([portType isEqualToString:AVAudioSessionPortHeadphones]) {
+                // 检测到 上一个音频输出是 耳机, 且现在耳机被拔出了
+                NSLog(@"耳机线断开了  或者 耳机拔出了");
+                // 此处需要暂停播放
+                [self pause];
+            }
+            
+        } break;
+        case AVAudioSessionRouteChangeReasonCategoryChange:{
+             NSLog(@"音频线路 ----变更  音频会话类型变更");
+        } break;
+        case AVAudioSessionRouteChangeReasonOverride:{
+            NSLog(@"音频线路 ----变更  覆盖");
+        } break;
+        case AVAudioSessionRouteChangeReasonWakeFromSleep:{
+            NSLog(@"音频线路 ----变更  从睡眠被唤醒");
+        } break;
+        case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:{
+            NSLog(@"音频线路 ----变更  没有适合当前 音频类型的线路");
+        } break;
+        case AVAudioSessionRouteChangeReasonRouteConfigurationChange:{
+            NSLog(@"音频线路 ----变更  音频线路配置改变");
+        } break;
+            
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark- 激活后台模式
 /** 音频后台播放的步骤
@@ -86,6 +149,7 @@ static RGRemotePalyer *_remotePlayer = nil;
 -(AVPlayerLayer *)videoPlayWithUrl:(NSURL *)url isCache:(BOOL)isCache{
     
     [self playWithUrl:url isCache:isCache];
+    
     
     return  [AVPlayerLayer playerLayerWithPlayer:self.player];
   
@@ -429,6 +493,7 @@ static RGRemotePalyer *_remotePlayer = nil;
 -(void)dealloc{
     
     [self removeCurrentItemObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

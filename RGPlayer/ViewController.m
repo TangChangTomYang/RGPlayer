@@ -31,7 +31,7 @@
 @end
 
 @implementation ViewController
-
+ 
 
 - (NSTimer *)timer {
     if (!_timer) {
@@ -79,15 +79,16 @@
 
 - (IBAction)play:(id)sender {
     
-//    [self audioPlay];
+    [self audioPlay];
     
-    [self videoPlay];
+//    [self videoPlay];
 }
 
 // 音频播放
 -(void)audioPlay{
     //远程音频播放地址
-    NSURL *url = [NSURL URLWithString:@"http://172.20.10.10/seeyouseeme.mp3"];
+    NSURL *url = [NSURL URLWithString:@"http://10.0.0.115/seeyouseeme.mp3"];
+//    NSURL *url = [NSURL URLWithString:@"http://172.20.10.10/seeyouseeme.mp3"];
     //本地音频播放
     //url = [[NSBundle mainBundle] URLForResource:@"235319.mp3" withExtension:nil];
     [[RGRemotePalyer shareInstance] playWithUrl:url isCache:YES];
